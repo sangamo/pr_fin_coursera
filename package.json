@@ -1,0 +1,24 @@
+{
+  "name": "pr_fin_coursera",
+  "version": "1.0.0",
+  "description": "Proyecto final curso de frontend",
+  "main": "Buy_now.html",
+  "scripts": {
+    "start":"npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sangamo/pr_fin_coursera.git"
+  },
+  "author": "Jaime Cuadrado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sangamo/pr_fin_coursera/issues"
+  },
+  "homepage": "https://github.com/sangamo/pr_fin_coursera#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
