@@ -2,7 +2,7 @@
   "name": "pr_fin_coursera",
   "version": "1.0.0",
   "description": "Proyecto final curso de frontend",
-  "main": "Buy_now.html",
+  "main": "index.html",
   "scripts": {
     "start":"npm run lite",
     "test": "echo \"Error: no test specified\" && exit 1",
