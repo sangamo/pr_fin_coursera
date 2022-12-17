@@ -12,17 +12,31 @@
 </head>
 <body>
     <nav class="navbar navbar-dark navbar-expand-sm bg-primary fixed-top">
-        <div class="container"> 
-            <a class="navbar-brand" href="#">Colombian wires Ltd.</a>
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#">Buy now</a>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active"><a class="nav-link" href="#">Buy now</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./wire.html">Calculate wire</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./savings.html">Calculate savings</a></li>
+                    </ul>
+                </div>                
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            <img src="img/logo.png" alt="Logotipo" style="width:125px;height:100px;">    
-            <h1>COLOMBIAN WIRES LTD.</h1>
-            <h2>Your best option in copper and aluminum</h2>
+    <header class="jumbotron"><div class="container">
+        <div class="row">  
+            <div class="column-10">
+                <h1>COLOMBIAN WIRES LTD.</h1>
+                <h2>Your best option in copper and aluminum</h2>
+            </div>
+            <div class="column-2">
+                <img src="img/logo.png" alt="Logotipo" style="float:right;width:125px;height:100px;"> 
+            </div>            
         </div>
-    </div>
+    </header>    
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
