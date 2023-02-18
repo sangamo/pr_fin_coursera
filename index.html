@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->   
+    <!-- build:css css/main.css --> 
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <!-- endbuild -->   
     <title>Buy now</title>
 </head>
 <body>
@@ -16,7 +20,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand mr-auto" href="#">Buy now</a>
+            <a class="navbar-brand mr-auto" href="#"><img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:40px;height:40px;"></a>
                 <div class="collapse navbar-collapse" id="Navbar">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active"><a class="nav-link" href="#">Buy now</a></li>
@@ -28,18 +32,240 @@
     </nav>
     <header class="jumbotron"><div class="container">
         <div class="row">  
-            <div class="column-10">
+            <div class="column-10 offset-1 pt-5">
                 <h1>COLOMBIAN WIRES LTD.</h1>
                 <h2>Your best option in copper and aluminum</h2>
             </div>
-            <div class="column-2">
-                <img src="img/logo.png" alt="Logotipo" style="float:right;width:125px;height:100px;"> 
+            <div class="column-2 offset-1 pt-5">
+                <img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:125px;height:100px;"> 
             </div>            
+        </div>         
+    </header> 
+    <div id="calcModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose the quantity of wire you want to buy:</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body col-12 col-md-9">
+                    <form name="calc">
+                        <div class="form-group row">
+                            <label for="potencia" class="col-md-3 col-form-label">Wire's gauge:</label>
+                            <div class="col-md-6">
+                                <select type="text" class="form-control" id="calibre" name="calibre">
+                                    <option value="750 MCM, Cu" id="750 MCM, Cu">750 MCM, Cu</option>
+                                    <option value="600 MCM, Cu" id="600 MCM, Cu">600 MCM, Cu</option>
+                                    <option value="500 MCM, Cu" id="500 MCM, Cu">500 MCM, Cu</option>
+                                    <option value="400 MCM, Cu" id="400 MCM, Cu">400 MCM, Cu</option>
+                                    <option value="350 MCM, Cu"  id="350 MCM, Cu">350 MCM, Cu</option>
+                                    <option value="250 MCM, Cu" id="250 MCM, Cu">250 MCM, Cu</option>
+                                    <option value="4/0 AWG, Cu" id="4/0 AWG, Cu">4/0 AWG, Cu</option>
+                                    <option value="3/0 AWG, Cu" id="3/0 AWG, Cu">3/0 AWG, Cu</option>
+                                    <option value="2/0 AWG, Cu" id="2/0 AWG, Cu">2/0 AWG, Cu</option>
+                                    <option value="1/0 AWG, Cu" id="1/0 AWG, Cu">1/0 AWG, Cu</option>
+                                    <option value="2 AWG, Cu" id="2 AWG, Cu">2 AWG, Cu</option>
+                                    <option value="4 AWG, Cu" id="4 AWG, Cu">4 AWG, Cu</option>
+                                    <option value="6 AWG, Cu" id="6 AWG, Cu">6 AWG, Cu</option>
+                                    <option value="8 AWG, Cu" id="8 AWG, Cu">8 AWG, Cu</option>
+                                    <option value="750 MCM, Al" id="750 MCM, Al">750 MCM, Al</option>
+                                    <option value="600 MCM, Al" id="600 MCM, Al">600 MCM, Al</option>
+                                    <option value="500 MCM, Al" id="500 MCM, Al">500 MCM, Al</option>
+                                    <option value="400 MCM, Al" id="400 MCM, Al">400 MCM, Al</option>
+                                    <option value="350 MCM, Al"  id="350 MCM, Al">350 MCM, Al</option>
+                                    <option value="250 MCM, Al" id="250 MCM, Al">250 MCM, Al</option>
+                                    <option value="4/0 AWG, Al" id="4/0 AWG, Al">4/0 AWG, Al</option>
+                                    <option value="3/0 AWG, Al" id="3/0 AWG, Al">3/0 AWG, Al</option>
+                                    <option value="2/0 AWG, Al" id="2/0 AWG, Al">2/0 AWG, Al</option>
+                                    <option value="1/0 AWG, Al" id="1/0 AWG, Al">1/0 AWG, Al</option>
+                                    <option value="2 AWG, Al" id="2 AWG, Al">2 AWG, Al</option>
+                                    <option value="4 AWG, Al" id="4 AWG, Al">4 AWG, Al</option>
+                                    <option value="6 AWG, Al" id="6 AWG, Al">6 AWG, Al</option>
+                                    <option value="8 AWG, Al" id="8 AWG, Al">8 AWG, Al</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fp" class="col-md-3 col-form-label">Cost/m:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="cost" name="cost">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="quantity" class="col-md-3 col-form-label">Quantity:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="quantity" name="quantity" onblur="totalizar()">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="total" class="col-md-3 col-form-label">Total:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="total" name="total">
+                            </div>                                                      
+                        </div>
+                    </form>                    
+                </div>
+            </div>
         </div>
-    </header>    
+    </div>  
+    <div class="container mt-3">    
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#Cu" role="tab" data-toggle="tab">Copper</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Al" role="tab" data-toggle="tab">Aluminum</a>
+          </li>          
+        </ul>
+      
+    <div class="tab-content">  
+    <div id="Cu" class="container tab-pane active"><br> 
+        <div class="row justify-content-md-center p-3">
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/750 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('750 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/600 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('600 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/500 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('500 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/400 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('400 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/350 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('350 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/250 MCM, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('250 MCM, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/4_0 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('4/0 AWG, Cu')">
+            </a>
+        </div> 
+        <div class="row justify-content-md-center p-3">
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/3_0 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('3/0 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/2_0 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('2/0 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/1_0 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('1/0 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/2 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('2 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/4 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('4 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/6 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('6 AWG, Cu')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/8 AWG, Cu.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('8 AWG, Cu')">
+            </a>
+        </div> 
+    </div>
+    <div id="Al" class="container tab-pane fade"><br> 
+        <div class="row justify-content-md-center p-3">
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/750 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('750 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/600 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('600 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/500 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('500 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/400 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('400 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/350 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('350 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/250 MCM, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('250 MCM, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/4_0 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('4/0 AWG, Al')">
+            </a>
+        </div> 
+        <div class="row justify-content-md-center p-3">
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/3_0 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('3/0 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/2_0 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('2/0 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/1_0 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('1/0 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/2 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('2 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/4 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('4 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/6 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('6 AWG, Al')">
+            </a>
+            <a data-toggle="modal" data-target="#calcModal">
+                <img class="mx-auto d-block" src="Img/8 AWG, Al.png" alt="Menu" style="width:120px;height:150px;" onclick="chooseOpt('8 AWG, Al')">
+            </a>
+        </div> 
+    </div>
+    </div>
+    </div>
+    <footer class="footer bg-light">
+        <div class="container pt-5">
+            <div class="row">             
+                <div class="col-4 col-sm-2">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Buy now</a></li>
+                        <li><a href="./wire.html">Calculate wire</a></li>
+                        <li><a href="./savings.html">Calculate savings</a></li>
+                    </ul>
+                </div>
+                <div class="col-7 col-sm-7">
+                    <h5 style="text-align:center">Our Address</h5>
+                    <address style="text-align:center" class="p-3">
+		              Calle 88 # 77b 33<br>
+		              Barrio, La Floresta<br>
+		              BARRANQUILLA<br>
+		              <i class="fa fa-phone"></i> : +57 301 588 1828<br>
+		              <i class="fa fa-fax fa-lg"></i> : +57 5 3788930<br>
+		              <i class="fa fa-envelope fa-lg"></i> : <a href="mailto:jcuadrado31@gmail.com">jcuadrado31@gmail.com</a>
+		            </address>
+                </div>
+                <div class="col-12 col-sm-3 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2023 Colombian Wires Ltd.</p> 
+                </div>
+           </div>
+        </div>
+    </footer>
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <!-- build:js js/main.js -->    
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/aux_index.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

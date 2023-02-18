@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <!-- endbuild -->
+    <title>Calculate savings</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm bg-primary fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:40px;height:40px;"></a>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="./index.html"><span class="fa fa-dollar fa-lg"></span> Buy now</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./wire.html"><span class="fa fa-dot-circle-o fa-lg"></span> Calculate wire</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-money fa-lg"></span> Calculate savings</a></li>
+                    </ul>
+                </div>                
+        </div>
+    </nav>    
+    <header class="jumbotron"><div class="container">
+        <div class="row">  
+            <div class="column-10 offset-1 pt-5">
+                <h1>COLOMBIAN WIRES LTD.</h1>
+                <h2>Your best option in copper and aluminum</h2>
+            </div>
+            <div class="column-2 offset-1 pt-5">
+                <img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:125px;height:100px;"> 
+            </div>            
+        </div>         
+    </header> 
+    <div id="calcModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Calculate wire</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body col-12 col-md-9">
+                    <form name="calc">
+                        <div class="form-group row">
+                            <label for="potencia" class="col-md-2 col-form-label">Potencia (KVA):</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="pot" name="pot">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fp" class="col-md-2 col-form-label">Factor de potencia:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="fp" name="fp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="No_fases" class="col-md-2 col-form-label">Sistema:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="cantidad" name="cantidad">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="total" class="col-md-2 col-form-label">total:</label>
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary btn-sm ml-1" onclick="calculate()">Calculate</button>
+                            </div>                           
+                        </div>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>  
+    <form name="save">
+        <div class="form-group row p-3">
+            <div class="col-md-3">
+
+            </div> 
+            <label for="calibre" class="col-md-3 col-form-label">The wire you need might be:</label>
+            <div class="col-md-2">
+                <select type="text" class="form-control" id="calibre" name="calibre" onchange="chooseBigger()">
+                    <option value="750 MCM, Cu" id="750 MCM, Cu" disabled>750 MCM, Cu</option>
+                    <option value="600 MCM, Cu" id="600 MCM, Cu">600 MCM, Cu</option>
+                    <option value="500 MCM, Cu" id="500 MCM, Cu">500 MCM, Cu</option>
+                    <option value="400 MCM, Cu" id="400 MCM, Cu">400 MCM, Cu</option>
+                    <option value="350 MCM, Cu"  id="350 MCM, Cu">350 MCM, Cu</option>
+                    <option value="250 MCM, Cu" id="250 MCM, Cu" selected>250 MCM, Cu</option>
+                    <option value="4/0 AWG, Cu" id="4/0 AWG, Cu">4/0 AWG, Cu</option>
+                    <option value="3/0 AWG, Cu" id="3/0 AWG, Cu">3/0 AWG, Cu</option>
+                    <option value="2/0 AWG, Cu" id="2/0 AWG, Cu">2/0 AWG, Cu</option>
+                    <option value="1/0 AWG, Cu" id="1/0 AWG, Cu">1/0 AWG, Cu</option>
+                    <option value="2 AWG, Cu" id="2 AWG, Cu">2 AWG, Cu</option>
+                    <option value="4 AWG, Cu" id="4 AWG, Cu">4 AWG, Cu</option>
+                    <option value="6 AWG, Cu" id="6 AWG, Cu">6 AWG, Cu</option>
+                    <option value="8 AWG, Cu" id="8 AWG, Cu">8 AWG, Cu</option>
+                </select>
+            </div> 
+            <div class="col-md-3">
+
+            </div>       
+        </div>
+        <div class="form-group row p-3">
+            <div class="col-md-3">
+                
+            </div> 
+            <label for="calibre" class="col-md-3 col-form-label">Choose a bigger gauge:</label>
+            <div class="col-md-2">
+                <select type="text" class="form-control" id="calibre_big" name="calibre_big">
+                    <option value="750 MCM, Cu" id="750 MCM, bCu">750 MCM, Cu</option>
+                    <option value="600 MCM, Cu" id="600 MCM, bCu">600 MCM, Cu</option>
+                    <option value="500 MCM, Cu" id="500 MCM, bCu">500 MCM, Cu</option>
+                    <option value="400 MCM, Cu" id="400 MCM, bCu">400 MCM, Cu</option>
+                    <option value="350 MCM, Cu" id="350 MCM, bCu" selected>350 MCM, Cu</option>
+                    <option value="250 MCM, Cu" id="250 MCM, bCu" hidden>250 MCM, Cu</option>
+                    <option value="4/0 AWG, Cu" id="4/0 AWG, bCu" hidden>4/0 AWG, Cu</option>
+                    <option value="3/0 AWG, Cu" id="3/0 AWG, bCu" hidden>3/0 AWG, Cu</option>
+                    <option value="2/0 AWG, Cu" id="2/0 AWG, bCu" hidden>2/0 AWG, Cu</option>
+                    <option value="1/0 AWG, Cu" id="1/0 AWG, bCu" hidden>1/0 AWG, Cu</option>
+                    <option value="2 AWG, Cu" id="2 AWG, bCu" hidden>2 AWG, Cu</option>
+                    <option value="4 AWG, Cu" id="4 AWG, bCu" hidden>4 AWG, Cu</option>
+                    <option value="6 AWG, Cu" id="6 AWG, bCu" hidden>6 AWG, Cu</option>
+                    <option value="8 AWG, Cu" id="8 AWG, bCu" hidden>8 AWG, Cu</option>
+                </select>
+            </div> 
+            <div class="col-md-3">
+                
+            </div>             
+        </div>
+        <div class="p-3">
+            <button type="button" class="btn btn-primary offset-5 align-self-center" id="calc" name="calculate">Calculate</button>
+        </div> 
+    </form>  
+    <footer class="footer bg-light">
+        <div class="container pt-5">
+            <div class="row">             
+                <div class="col-4 col-sm-2">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Buy now</a></li>
+                        <li><a href="./wire.html">Calculate wire</a></li>
+                        <li><a href="./savings.html">Calculate savings</a></li>
+                    </ul>
+                </div>
+                <div class="col-7 col-sm-7">
+                    <h5 style="text-align:center">Our Address</h5>
+                    <address style="text-align:center" class="p-3">
+		              Calle 88 # 77b 33<br>
+		              Barrio, La Floresta<br>
+		              BARRANQUILLA<br>
+		              <i class="fa fa-phone"></i> : +57 301 588 1828<br>
+		              <i class="fa fa-fax fa-lg"></i> : +57 5 3788930<br>
+		              <i class="fa fa-envelope fa-lg"></i> : <a href="mailto:jcuadrado31@gmail.com">jcuadrado31@gmail.com</a>
+		            </address>
+                </div>
+                <div class="col-12 col-sm-3 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2023 Colombian Wires Ltd.</p> 
+                </div>
+           </div>
+        </div>
+    </footer>
+    
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <!-- build:js js/main.js -->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/aux_savings.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

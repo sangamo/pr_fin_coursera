@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <!-- endbuild -->
+    <title>Calculate savings</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm bg-primary fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:40px;height:40px;"></a>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="./index.html"><span class="fa fa-dollar fa-lg"></span> Buy now</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-dot-circle-o fa-lg"></span> Calculate wire</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./savings.html"><span class="fa fa-money fa-lg"></span> Calculate savings</a></li>
+                    </ul>
+                </div>                
+        </div>
+    </nav>    
+    <header class="jumbotron"><div class="container">
+        <div class="row">  
+            <div class="column-10 offset-1 pt-5">
+                <h1>COLOMBIAN WIRES LTD.</h1>
+                <h2>Your best option in copper and aluminum</h2>
+            </div>
+            <div class="column-2 offset-1 pt-5">
+                <img class="mx-auto d-block" src="img/logo.png" alt="Logotipo" style="width:125px;height:100px;"> 
+            </div>            
+        </div>         
+    </header> 
+    <div id="calcModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Calculate wire</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body col-12 col-md-9">
+                    <form name="calc">
+                        <div class="form-group row">
+                            <label for="potencia" class="col-md-2 col-form-label">Potencia (KVA):</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="pot" name="pot">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fp" class="col-md-2 col-form-label">Factor de potencia:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="fp" name="fp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="No_fases" class="col-md-2 col-form-label">Sistema:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="cantidad" name="cantidad">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="total" class="col-md-2 col-form-label">total:</label>
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary btn-sm ml-1" onclick="calculate()">Calculate</button>
+                            </div>                           
+                        </div>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>  
+    <form name="save">
+        <div class="form-group row p-5">                     
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Enter the number of phases:</label>                
+            <div class="col-md-4">
+                <select id="fas">
+                    <option>three-phase</option>
+                    <option>two-phase</option>
+                </select>                
+            </div>            
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Enter the voltage (V):</label>                
+            <div class="col-md-4">
+                <input id="vol" type="text" name="Voltaje:" value="208">             
+            </div> 
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Enter the power (KVA):</label>                
+            <div class="col-md-4">
+                <input id="pot" type="text" name="Potencia:" value="300">             
+            </div>                  
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Especify if the feeder need a security factor:</label>                
+            <div class="col-md-4 btn-group">
+                <button type="button" class="btn btn-success" id="sin_fac" name="alimentador" value="Sin factor" onclick="desactivarFactor()">Without factor</button>
+                <button type="button" class="btn btn-danger" id="con_fac" name="alimentador" value="Con factor" onclick="activarFactor()">With factor</button>            
+            </div>               
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Enter value as percentage:</label>                
+            <div class="col-md-4 btn-group">
+                <input id="alim" type="text" name="Fac_alim" disabled>            
+            </div> 
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Choose the type of piping:</label>    
+            <div class="col-md-4 btn-group">
+                <button type="button" class="btn btn-secondary" id="tube" name="tube" onclick="desactivarSep()">Tube</button>
+                <button type="button" class="btn btn-info" id="tray" name="tray" onclick="activarSep()">Tray</button> 
+                <button type="button" class="btn btn-secondary" id="covered" name="covered" onclick="desactivarSep()">Covered tray</button>
+                <button type="button" class="btn btn-info" id="outdoor" name="outdoor" onclick="desactivarSep()">Outdoor</button>           
+            </div> 
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Choose the tray wiring:</label> 
+            <div class="col-md-4">
+                <select id="sep" disabled>
+                    <option>joint</option>
+                    <option>without joint</option>
+                    <option>triads</option>
+                </select>                
+            </div>
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Choose the temperature of the wire:</label> 
+            <div class="col-md-4">
+                <select id="temp">
+                    <option>90℃</option>
+                    <option>75℃</option>
+                    <option>60℃</option>
+                </select>                
+            </div> 
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Enter environment temperature (℃):</label>                
+            <div class="col-md-4">
+                <input id="tamb" type="text" name="tamb">            
+            </div> 
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Choose the type of conductor:</label>    
+            <div class="col-md-4 btn-group">
+                <button type="button" class="btn btn-secondary" id="cu" name="copper">Copper</button>
+                <button type="button" class="btn btn-info" id="al" name="aluminum">Aluminum</button>                            
+            </div>
+            <label for="calibre" class="col-md-4 offset-2 col-form-label">Choose the number of wires:</label>                
+            <div class="col-md-4">
+                <input id="ncond" type="text" name="Ncond">            
+            </div>  
+            <div class="col-md-4">
+                            
+            </div>  
+            <div>
+                <button type="button" class="btn btn-primary offset-5 align-self-center" id="calc" name="calculate">Calculate</button>
+            </div>                               
+        </div>
+    </form> 
+    <footer class="footer bg-light">
+        <div class="container pt-5">
+            <div class="row">             
+                <div class="col-4 col-sm-2">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Buy now</a></li>
+                        <li><a href="./wire.html">Calculate wire</a></li>
+                        <li><a href="./savings.html">Calculate savings</a></li>
+                    </ul>
+                </div>
+                <div class="col-7 col-sm-7">
+                    <h5 style="text-align:center">Our Address</h5>
+                    <address style="text-align:center" class="p-3">
+		              Calle 88 # 77b 33<br>
+		              Barrio, La Floresta<br>
+		              BARRANQUILLA, COLOMBIA<br>
+		              <i class="fa fa-phone"></i> : +57 301 588 1828<br>
+		              <i class="fa fa-fax fa-lg"></i> : +57 5 3788930<br>
+		              <i class="fa fa-envelope fa-lg"></i> : <a href="mailto:jcuadrado31@gmail.com">jcuadrado31@gmail.com</a>
+		            </address>
+                </div>
+                <div class="col-12 col-sm-3 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2023 Colombian Wires Ltd.</p> 
+                </div>
+           </div>
+        </div>
+    </footer>
+    
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <!-- build:js js/main.js -->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            calibres_cu = ["750 MCM, Cu", "600 MCM, Cu", "500 MCM, Cu", "400 MCM, Cu", "350 MCM, Cu", "250 MCM, Cu", "4/0 AWG, Cu",
+                        "3/0 AWG, Cu", "2/0 AWG, Cu", "1/0 AWG, Cu", "2 AWG, Cu", "4 AWG, Cu", "6 AWG, Cu", "8 AWG, Cu"];
+            calibres_bcu = ["750 MCM, bCu", "600 MCM, bCu", "500 MCM, bCu", "400 MCM, bCu", "350 MCM, bCu", "250 MCM, bCu", "4/0 AWG, bCu",
+                        "3/0 AWG, bCu", "2/0 AWG, bCu", "1/0 AWG, bCu", "2 AWG, bCu", "4 AWG, bCu", "6 AWG, bCu", "8 AWG, bCu"];
+            flag = 0;
+            for(let i=0; i<calibres_cu.length; i++){
+                if(document.getElementById(calibres_cu[i]).selected){
+                    document.getElementById(calibres_bcu[i-1]).selected=true;
+                    flag = 1;
+                }
+                if(flag==1)
+                    document.getElementById(calibres_bcu[i]).hidden=true;
+            }
+            
+        })
+
+        function calculate(){            
+            potencia=document.getElementById('pot').value*document.getElementById('fp').value;
+            if(potencia>10)
+                document.getElementById('350 MCM, Cu').selected=true;
+                $(document.getElementById('cantidad').addEventListener("blur", function(){
+            document.getElementById('total').value = document.getElementById('precio').value*document.getElementById('cantidad').value
+        })) 
+        } 
+        function activarFactor(){ 
+            document.getElementById('alim').disabled=false;            
+        }
+        function desactivarFactor(){ 
+            document.getElementById('alim').disabled=true;            
+        }
+        function activarSep(){ 
+            document.getElementById('sep').disabled=false;            
+        }
+        function desactivarSep(){ 
+            document.getElementById('sep').disabled=true;            
+        }
+    </script>
+    <!-- endbuild -->
+</body>
+</html>
