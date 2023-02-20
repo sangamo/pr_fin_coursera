@@ -55,7 +55,7 @@
                         <div class="form-group row">
                             <label for="potencia" class="col-md-3 col-form-label">Wire's gauge:</label>
                             <div class="col-md-6">
-                                <select type="text" class="form-control" id="calibre" name="calibre">
+                                <select type="text" class="form-control" id="calibre" name="calibre" onchange="changePrice(this.selectedIndex)">
                                     <option value="750 MCM, Cu" id="750 MCM, Cu">750 MCM, Cu</option>
                                     <option value="600 MCM, Cu" id="600 MCM, Cu">600 MCM, Cu</option>
                                     <option value="500 MCM, Cu" id="500 MCM, Cu">500 MCM, Cu</option>
@@ -104,6 +104,11 @@
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="total" name="total">
                             </div>                                                      
+                        </div>
+                        <div class="p-3">
+                            <button type="button" class="btn btn-primary offset-5 align-self-center" data-dismiss="modal" id="calc" name="calculate" onmouseover="totalizar()">
+                                <i class="fa fa-shopping-cart fa-lg"></i>
+                            </button>
                         </div>
                     </form>                    
                 </div>
