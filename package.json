@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "copyfonts": "copyfiles -f node_modules/font-awesome/fonts/* dist/fonts",
     "imagemin": "imagemin img/* -o dist/img",
-    "usemin": "usemin savings.html -d dist --htmlmin -o dist/savings.html  &&  usemin wire.html -d dist --htmlmin -o dist/wire.html && usemin savings.html -d dist --htmlmin -o dist/savings.html",
+    "usemin": "usemin index.html -d dist --htmlmin -o dist/index.html  &&  usemin wire.html -d dist --htmlmin -o dist/wire.html && usemin savings.html -d dist --htmlmin -o dist/savings.html",
     "build": "npm rum clean && npm run copyfonts && npm run imagemin && npm run usemin"
   },
   "repository": {
